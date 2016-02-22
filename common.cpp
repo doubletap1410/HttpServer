@@ -154,13 +154,14 @@ void child_process(int sock, int number) {
             fprintf(log, "FILE: %s\n", filename.c_str());
             if (checkFile(filename)) {
                 std::string content = readFile(filename);
-                response = HttpResponse200(content.c_str(), content.length());
+                response = HttpResponse200(content.c_str(), content.length() - 1);
             }
             else {
                 response = HttpResponse404();
             }
         }
 
+        fprintf(log, "RESPONSE: %s\n", response.c_str());
         send(fd, response.c_str(), response.length(), MSG_NOSIGNAL);
         close(fd);
     }

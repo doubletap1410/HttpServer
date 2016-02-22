@@ -17,7 +17,7 @@
 #include "common.h"
 
 //#define ENABLE_SIGNALS
-//#define ENABLE_DEAMON
+#define ENABLE_DEAMON
 
 static const int max_child = 10;
 int children[max_child];
@@ -77,7 +77,6 @@ int main(int argc, char *argv[])
     pid_t pid = fork();
     if (pid == 0) {
 #endif
-
         // Create Master Socket
         int MasterSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
