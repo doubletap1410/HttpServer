@@ -242,8 +242,10 @@ std::string HttpResponse200(const char *buf, ssize_t size)
                           "Connection: close\r\n"
                           "Content-Type: text\\html\r\n"
                           "\r\n"
-                          "%s\0";
-    sprintf(res, format, size, buf);
+                          "%s";
+    int s = sprintf(res, format, size, buf);
+    res[s] = '\0';
+
     return res;
 }
 
