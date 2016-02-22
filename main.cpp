@@ -18,7 +18,7 @@
 
 //#define ENABLE_SIGNALS
 
-static const int max_child = 2;
+static const int max_child = 10;
 int children[max_child];
 std::map<pid_t, int> process_to_socket;
 
