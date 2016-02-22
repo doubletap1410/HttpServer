@@ -154,7 +154,7 @@ void child_process(int sock, int number) {
             fprintf(log, "FILE: %s\n", filename.c_str());
             if (checkFile(filename)) {
                 std::string content = readFile(filename);
-                response = HttpResponse200(content.c_str(), content.length() - 1);
+                response = HttpResponse200(content.c_str(), content.size());
             }
             else {
                 response = HttpResponse404();
@@ -242,7 +242,7 @@ std::string HttpResponse200(const char *buf, ssize_t size)
                           "Connection: close\r\n"
                           "Content-Type: text\\html\r\n"
                           "\r\n"
-                          "%s";
+                          "%s\0";
     sprintf(res, format, size, buf);
     return res;
 }
