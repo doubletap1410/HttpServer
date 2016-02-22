@@ -136,7 +136,7 @@ void child_process(int sock, int number) {
 
         buff[size] = '\0';
 
-        FILE *log = fopen("error.log", "w");
+        FILE *log = fopen("/home/box/error.log", "w");
 
         std::string url = parseHttpGet(buff, size);
         fprintf(log, "URL1: %s\n", url.c_str());
