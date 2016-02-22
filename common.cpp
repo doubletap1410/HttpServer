@@ -135,8 +135,15 @@ void child_process(int sock, int number) {
             break;
 
         buff[size] = '\0';
+
+        FILE *log = fopen("error.log", "w");
+
         std::string url = parseHttpGet(buff, size);
+        fprintf(log, "URL1: %s\n", url.c_str());
         url = parseUrl(url);
+        fprintf(log, "URL2: %s\n", url.c_str());
+
+        fprintf(log, "URL3: %s\n", getPostfix(url).c_str());
 
         std::string response;
         if (getPostfix(url) != "html") {
@@ -144,6 +151,7 @@ void child_process(int sock, int number) {
         }
         else {
             std::string filename = directory + url;
+            fprintf(log, "FILE: %s\n", filename.c_str());
             if (checkFile(filename)) {
                 std::string content = readFile(filename);
                 response = HttpResponse200(content.c_str(), content.length());
